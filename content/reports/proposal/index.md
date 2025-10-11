@@ -1,10 +1,10 @@
 ---
 title: "Project Proposal"
-date: 2024-10-10
+date: 2025-10-11
 tags: ["geometric modeling", "computer graphics", "implicit modeling", "neural networks", "optimization"]
 author: "Siqi Guo"
-description: "Project proposal for accelerating MLP training in 3D curve surfacing using implicit modeling" 
-summary: "This proposal outlines a project to accelerate MLP training for 3D curve surfacing through Hessian matrix computation optimization." 
+description: "Project proposal for accelerating training for 3D curve surfacing through optimized implicit modeling" 
+summary: "This proposal outlines a project to accelerate MLP training for 3D curve surfacing through smoothness energy computation optimization." 
 cover:
     image: "proposal.png"
     alt: "Project Proposal"
@@ -16,7 +16,7 @@ disableAnchoredHeadings: false
 
 # Project Proposal
 
-**Title:** Accelerating Training for 3D Curve Surfacing through Implicit Modeling
+**Title:** Accelerating Training for 3D Curve Surfacing through Optimized Implicit Modeling
 
 **Student Name:** Siqi Guo
 
