@@ -13,14 +13,14 @@ taxonomies:
 menu:
     main:
         - name: Reports
-          url: courses/course1/
+          url: reports/
           weight: 1
 
 params:
-    description: "Student project page for Geometric Modeling class assignments and reports by Siqi Guo."
+    description: "Student project page for Geometric Modeling class reports by Siqi Guo."
     author: Siqi Guo
     # googleAnalyticsID: "G-XXXXX"
-    DateFormat: "January 2006"
+    DateFormat: "October 2025"
     defaultTheme: light
     hideFooter: false
     disableThemeToggle: true
@@ -32,7 +32,7 @@ params:
     ShowBreadCrumbs: false
     ShowCodeCopyButtons: true
     ShowAllPagesInArchive: false
-    MainSections: ["books","courses","papers","data"]
+    MainSections: ["reports"]
     ShowToc: false
     disableScrollToTop: true
     TocOpen: true
@@ -43,19 +43,17 @@ params:
     profileMode:
           enabled: true
           title: Siqi Guo
-          subtitle: "Student in Geometric Modeling class. This page contains all submitted reports and assignments for the course."
+          subtitle: "Student in Geometric Modeling class. This page contains all submitted reports for the course."
           imageUrl: "picture.jpeg"
           imageWidth: 160
           imageHeight: 160
           buttons:
             - name: Reports
-              url: courses/course1/
-            - name: Archive
-              url: archive/
+              url: reports/
 
     socialIcons:
         - name: GitHub
-          url: https://github.com/siqiguo
+          url: https://github.com/PenGuln
 
     assets:
         disableScrollBarStyle: true

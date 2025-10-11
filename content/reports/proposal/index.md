@@ -3,10 +3,10 @@ title: "Geometric Modeling Class Project"
 date: 2024-01-01
 tags: ["geometric modeling", "computer graphics", "mathematics", "3D modeling"]
 author: "Siqi Guo"
-description: "Student project page for Geometric Modeling class assignments and reports." 
-summary: "This page contains all reports and assignments submitted for the Geometric Modeling class." 
+description: "Student project page for Geometric Modeling" 
+summary: "This page contains the content of project proposal." 
 cover:
-    image: "course1.png"
+    image: "proposal.png"
     alt: "Geometric Modeling"
     relative: true
 showToc: true
