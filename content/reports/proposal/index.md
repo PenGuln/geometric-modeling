@@ -20,6 +20,8 @@ disableAnchoredHeadings: false
 
 **Student Name:** Siqi Guo
 
+**PDF Version:** [Download PDF](index.pdf)
+
 ## Summary
 
 ### Description of Problem
