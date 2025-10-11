@@ -29,22 +29,21 @@ This page contains all reports and assignments submitted for the Geometric Model
 
 This section contains all submitted reports and assignments for the Geometric Modeling class.
 
-##### Assignment Reports
+##### Project Proposal
 
-+ **Report 1** - [Curve Modeling Fundamentals](report1.pdf) - Analysis of Bézier curves and their mathematical properties
-+ **Report 2** - [Surface Modeling Techniques](report2.pdf) - Implementation of B-spline surfaces
-+ **Report 3** - [NURBS Applications](report3.pdf) - Practical applications of NURBS in computer graphics
-+ **Report 4** - [Mesh Processing](report4.pdf) - Algorithms for mesh generation and optimization
-+ **Final Project** - [Geometric Modeling Application](final_project.pdf) - Complete implementation of a geometric modeling system
++ [Project Proposal](proposal.pdf) - Initial project proposal outlining the geometric modeling project scope, objectives, and methodology
 
-##### Code Implementations
+##### Literature Review
 
-+ [Curve Algorithms](curve_algorithms.zip) - Implementation of curve generation and manipulation algorithms
-+ [Surface Modeling](surface_modeling.zip) - B-spline and NURBS surface implementation
-+ [Mesh Processing](mesh_processing.zip) - Mesh generation and processing utilities
++ [Literature Review](literature_review.pdf) - Comprehensive review of relevant research papers and methodologies in geometric modeling
 
-##### Documentation
+##### Project Updates
 
-+ [Project Documentation](project_docs.pdf) - Comprehensive documentation of all implementations
-+ [Algorithm Analysis](algorithm_analysis.pdf) - Performance analysis and complexity studies
++ [Project Update 1](project_update_1.pdf) - First progress report on project development
++ [Project Update 2](project_update_2.pdf) - Second progress report with implementation details
++ [Project Update 3](project_update_3.pdf) - Third progress report with testing and validation results
+
+##### Final Report
+
++ [Final Report](final_report.pdf) - Complete final report documenting the entire geometric modeling project, including results, analysis, and conclusions
 
