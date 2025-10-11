@@ -1,4 +1,4 @@
 ---
-title: "Courses"
-description: "Courses on philology by Professor Dr von Igelfeld and esteemed colleagues. For undergraduate and graduate students."
+title: "Geometric Modeling Reports"
+description: "All submitted reports and assignments for the Geometric Modeling class by Siqi Guo."
 ---

@@ -20,7 +20,7 @@ params:
     description: "Student project page for Geometric Modeling class reports by Siqi Guo."
     author: Siqi Guo
     # googleAnalyticsID: "G-XXXXX"
-    DateFormat: "October 2025"
+    DateFormat: "January 2006"
     defaultTheme: light
     hideFooter: false
     disableThemeToggle: true
