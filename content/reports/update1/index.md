@@ -1,6 +1,6 @@
 ---
 title: "First Project Update"
-date: 2025-10-11
+date: 2025-10-30
 tags: ["geometric modeling", "computer graphics", "implicit modeling", "neural networks", "optimization", "project update"]
 author: "Siqi Guo"
 description: "First project update for accelerating training in 3D curve surfacing" 
