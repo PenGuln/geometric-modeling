@@ -11,61 +11,68 @@ disableAnchoredHeadings: false
 
 # First Project Update
 
-**Project Title:** Accelerating Training for 3D Curve Surfacing through Optimized Implicit Modeling
-
 **Student Name:** Siqi Guo
+
+**Project Title:** Accelerating Training for 3D Curve Surfacing through Optimized Implicit Modeling
 
 ## Summary of Work to Date
 
-### Literature Review
+### Literature Review (Completed)
 
-I have completed a comprehensive literature review examining neural implicit modeling for 3D curve surfacing, with particular focus on computational optimization techniques. The review organized into key areas: traditional geometric modeling approaches, neural implicit representations (occupancy networks, DeepSDF, SIREN), optimization strategies (Eikonal condition, Dirichlet conditions, thin-plate energy), NeuVAS and related methods, and computational acceleration techniques.
+I have completed a comprehensive literature review examining neural implicit modeling for 3D curve surfacing, with focus on computational optimization techniques. The review covers traditional geometric modeling approaches, neural implicit representations (occupancy networks, DeepSDF, SIREN), optimization strategies for surface reconstruction, NeuVAS and related methods, and computational acceleration techniques. This work has been compiled into a comprehensive PDF document.
 
-### Implementation Progress
+### Baseline Implementation (Partially Completed)
 
-I have implemented the baseline MLP training pipeline using the NeuVAS loss formulation. The implementation includes:
+I have implemented the core training framework in PyTorch with modular components for network definition, loss computation, and optimization. Two of the three NeuVAS loss components are fully functional:
 
-- **Framework Setup**: PyTorch-based training framework with modular components for network definition, loss computation, and optimization.
+1. **Eikonal condition** (completed): Regularization term enforcing unit gradient magnitude at sample points
+2. **Dirichlet condition** (completed): Boundary constraint ensuring the implicit function equals zero on input curves
+3. **Weighted thin-plate energy** (in progress): Smoothness term requiring Hessian computation through automatic differentiation
 
-- **Loss Function Components**: Two of the three components of the NeuVAS loss have been implemented:
-  1. **Eikonal condition**: ✓ Completed - Regularization term enforcing $|\nabla f| = 1$ at sample points
-  2. **Dirichlet condition**: ✓ Completed - Boundary constraint ensuring $f(x) = 0$ for points on input curves
-  3. **Weighted thin-plate energy**: In progress - Smoothness term requiring Hessian computation, which presents significant implementation complexity due to the complex forward/backward processes needed for second-order derivatives through the automatic differentiation system
+The thin-plate energy component has proven more complex than anticipated due to the need for second-order derivatives through the autodiff system. I am currently working through the implementation of the forward/backward passes for this component.
 
-### Visualization Implementation
+### Visualization Tools (In Progress)
 
-I am currently implementing surface visualization tools. Meshes will be extracted from the zero-level set of the learned neural implicit function using the Marching Cubes algorithm [Lorensen and Cline 1987]. I have recently studied the Marching Cubes algorithm to understand how to properly extract surface meshes from the implicit representation for visualization and evaluation purposes.
+I have studied the Marching Cubes algorithm [Lorensen and Cline 1987] for extracting surface meshes from the learned implicit function's zero-level set. Implementation is underway but not yet complete.
 
 ## Analysis of Work
 
-### First Update Goals Assessment
+My original goals for this first update were:
 
-The original goals for the first update were:
+1. **Complete comprehensive literature review** - ✓ Achieved
+2. **Implement baseline MLP training pipeline using NeuVAS loss** - Partially achieved (2 of 3 loss components complete)
+3. **Profile implementation to identify computational bottlenecks** - Not yet achieved
 
-1. **Complete comprehensive literature review**: The literature review has been completed and compiled into a comprehensive PDF document.
+The literature review proceeded as planned and provided a solid foundation for understanding the problem space. The baseline implementation has taken longer than expected, primarily due to the complexity of implementing the weighted thin-plate energy term with its second-order derivative requirements. I initially underestimated the technical challenges involved in computing Hessians efficiently through PyTorch's automatic differentiation system.
 
-2. **Implement baseline MLP training pipeline using the NeuVAS loss formulation**: The baseline MLP training pipeline framework has been implemented, and two of the three NeuVAS loss components (Eikonal condition and Dirichlet condition) are complete. The weighted thin-plate energy component is in progress, as it requires complex forward/backward processes for Hessian computation. Evaluation of the partial implementation is currently in process.
+Profiling has not yet begun, as I decided it would be more productive to first complete a fully functional baseline before conducting detailed performance analysis. This represents a minor adjustment to my timeline but does not fundamentally impact the project goals.
 
-3. **Profile the implementation to identify and quantify specific computational bottlenecks**: Profiling setup has been initiated, but comprehensive quantitative analysis remains to be completed. Once evaluation of the baseline implementation is complete, detailed profiling will be performed to quantify specific computational bottlenecks.
-
-### Status Assessment
-
-Overall, the project is **on schedule**. The literature review is complete, and the baseline implementation framework is established with two of the three loss components implemented. The remaining work for the first update goals includes completing the weighted thin-plate energy component, evaluation of the full baseline implementation, and comprehensive profiling to quantify computational bottlenecks.
+**Status:** I consider the project to be on schedule overall, though with some internal reordering of tasks. The core framework is solid, and completing the remaining loss component should not require more than another few days of focused work.
 
 ## Plan for Completion
 
-### Completion of First Update Goals (Remaining Work)
+### Immediate Goals (Next 1-2 Weeks)
 
-- **Complete weighted thin-plate energy implementation** (0.5 week): Finish implementing the weighted thin-plate energy component, including the complex forward/backward processes for Hessian computation through the automatic differentiation system.
+1. **Complete weighted thin-plate energy implementation** (3-4 days): Finish the Hessian computation and integrate it into the loss function. Test on simple curve networks to verify correctness.
 
-### Second Update Goals
+2. **Complete visualization framework** (2-3 days): Finish Marching Cubes implementation and create a rendering pipeline for visualizing reconstructed surfaces.
 
-- **Complete visualization framework** (0.5 week): Finish implementing Marching Cubes algorithm for mesh extraction and create rendering pipeline for surface visualization.
+3. **Initial baseline evaluation** (2-3 days): Run the complete training pipeline on several test cases to verify functionality and stability. Collect initial qualitative results.
 
-- **Develop evaluation framework** (0.5 week): Implement quantitative evaluation metrics and create automated testing pipeline.
+### Second Update Goals (Next 2-3 Weeks)
 
-- **Complete evaluation of baseline implementation**: Finish testing the full training pipeline with all three loss components on various curve networks to ensure functionality and stability.
+1. **Comprehensive profiling** (3-4 days): Use PyTorch profiler and other tools to identify and quantify computational bottlenecks. Generate detailed performance metrics for each component of the training pipeline.
 
-- **Explore and implement optimization strategies** (1 week):
-  - Alternative smoothness measures
-  - Weight function alternatives
+2. **Develop quantitative evaluation metrics** (2 days): Implement metrics for measuring reconstruction quality and create an automated testing framework.
+
+3. **Explore optimization strategies** (1-1.5 weeks): Based on profiling results, investigate and implement optimization approaches such as:
+   - Alternative network architectures or activation functions
+   - Sampling strategies for loss computation
+   - Potential acceleration through vectorization or GPU optimization
+   - Alternative formulations for the smoothness term
+
+### Timeline for Remainder of Project
+
+I anticipate remaining on schedule for the rest of the project. The main risk is that profiling may reveal optimization challenges that are more difficult to address than expected. However, the literature review has already identified several promising acceleration techniques, so I have multiple approaches to explore if initial optimization attempts prove insufficient.
+
+If necessary, I can adjust the scope by limiting the number of optimization strategies explored in depth, focusing on the most promising 2-3 approaches rather than attempting a comprehensive comparison of all possible techniques. The core deliverable—a working implementation with demonstrated speedup over the baseline—remains feasible within the project timeline.
