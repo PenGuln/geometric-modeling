@@ -31,11 +31,15 @@ I have completed a fully functional baseline training pipeline for neural implic
    - Gradient computation function for Eikonal loss
 
 2. **Loss Function Framework** (`loss_function.py`):
-   - **Eikonal Loss (L_E)**: NeuVAS-style formulation using absolute value: `L_E = (1/|Q|) Σ |1 - ||∇f(q, θ)|||`
-   - **Data Matching Loss (L_DM)**: Ensures surface passes through curve points: `L_DM = (1/|P|) Σ |f(p, θ)|`
-   - **Data Non-Matching Loss (L_DNM)**: Prevents function from being zero away from curves: `L_DNM = (1/|Q|) Σ exp(-α|f(q, θ)|)`
-   - Total loss: `L_interp = λ_E * L_E + λ_DM * L_DM + λ_DNM * L_DNM`
-   - Default hyperparameters: λ_E = 0.1 (matching IGR), λ_DM = 100.0, λ_DNM = 10.0, α = 10.0
+   - **Eikonal Loss ($L_E$)**: NeuVAS-style formulation using absolute value:
+     $$L_E = \frac{1}{|Q|} \sum_{q \in Q} \left|1 - \|\nabla f(q, \theta)\|\right|$$
+   - **Data Matching Loss ($L_{DM}$)**: Ensures surface passes through curve points:
+     $$L_{DM} = \frac{1}{|P|} \sum_{p \in P} |f(p, \theta)|$$
+   - **Data Non-Matching Loss ($L_{DNM}$)**: Prevents function from being zero away from curves:
+     $$L_{DNM} = \frac{1}{|Q|} \sum_{q \in Q} \exp(-\alpha |f(q, \theta)|)$$
+   - **Total loss**:
+     $$L_{interp} = \lambda_E \cdot L_E + \lambda_{DM} \cdot L_{DM} + \lambda_{DNM} \cdot L_{DNM}$$
+   - Default hyperparameters: $\lambda_E = 0.1$ (matching IGR), $\lambda_{DM} = 100.0$, $\lambda_{DNM} = 10.0$, $\alpha = 10.0$
 
 3. **Zero-Level Set Extraction** (`zero_level_set.py`):
    - Marching Cubes implementation at $128^3$ resolution
