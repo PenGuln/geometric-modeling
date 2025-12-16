@@ -56,15 +56,7 @@ The core work involved implementing a complete training pipeline for NeuVAS-styl
 
 #### Network Architecture (`implicit_model.py`)
 
-I implemented an 8-layer MLP with 256 hidden units per layer (1.86M total parameters) following the IGR specification. The network uses Softplus activation (β=100) and includes a skip connection from input to the 4th layer. The geometric initialization scheme was implemented to bias the network toward representing a signed distance function initially, improving convergence stability.
-
-**Key architectural features:**
-- Input: 3D point coordinates (x, y, z)
-- Hidden layers: 8 layers × 256 units
-- Activation: Softplus(x, β=100) for smooth gradients
-- Skip connection: Input concatenated at layer 4
-- Output: Single scalar (signed distance value)
-- Gradient computation: Automatic differentiation for Eikonal loss
+I implemented an 8-layer MLP with 512 hidden units per layer (1.86M total parameters) following the IGR specification. The network uses Softplus activation (β=100) and includes a skip connection from input to the 4th layer. The geometric initialization scheme was implemented to bias the network toward representing a signed distance function initially, improving convergence stability.
 
 #### Loss Function Framework (`loss_function.py`)
 
@@ -73,26 +65,24 @@ I implemented three of the four NeuVAS loss components:
 1. **Eikonal Loss (L_E)**: $L_E = \frac{1}{|Q|} \sum_{q \in Q} \left|1 - \|\nabla f(q, \theta)\|\right|$ 
    - Ensures the gradient has unit magnitude
    - Regularizes the field to approximate a signed distance function
-   - Weight: λ_E = 0.1 (matching IGR)
+   - Weight: $\lambda_{E}$ = 0.1 (matching IGR)
 
 2. **Data Matching Loss (L_DM)**: $L_{DM} = \frac{1}{|P|} \sum_{p \in P} |f(p, \theta)|$ 
    - Enforces that the surface passes through curve points
    - Hard constraint: function value must be zero on curves
-   - Weight: λ_DM = 100.0
+   - Weight: $\lambda_{DM}$ = 100.0
 
 3. **Data Non-Matching Loss (L_DNM)**: $L_{DNM} = \frac{1}{|Q|} \sum_{q \in Q} \exp(-\alpha |f(q, \theta)|)$ 
    - Prevents the function from collapsing to zero everywhere
    - Encourages non-zero values away from curves
-   - Weight: λ_DNM = 10.0
-   - Decay parameter: α (explored values: 10-50)
+   - Weight: $\lambda_{DNM}$ = 10.0
+   - Decay parameter: $\alpha$
 
 The total loss combines these: $L_{interp} = \lambda_E \cdot L_E + \lambda_{DM} \cdot L_{DM} + \lambda_{DNM} \cdot L_{DNM}$
 
-**Note:** The distance-weighted thin-plate energy term (fourth component) was not implemented due to the computational complexity of Hessian computation and time constraints.
-
 #### Zero-Level Set Extraction (`zero_level_set.py`)
 
-I implemented mesh extraction using Marching Cubes at 128³ resolution with batch-based SDF evaluation for memory efficiency (100,000 points per batch). The system includes:
+I implemented mesh extraction using Marching Cubes at $128^3$ resolution with batch-based SDF evaluation for memory efficiency (100,000 points per batch). The system includes:
 - Point projection to the zero-level set using gradient descent
 - Mesh sampling utilities (Poisson-disk and uniform sampling)
 - Compatibility with both older and newer scikit-image APIs
@@ -123,12 +113,7 @@ The most significant challenge was that **critical implementation details were m
 
 1. **Model Initialization**: The paper does not specify the initialization scheme used. I adopted IGR's geometric initialization, but this may differ from the original NeuVAS implementation, potentially affecting convergence behavior.
 
-2. **Hyperparameter α**: The exponential decay parameter α in the data non-matching loss is not specified in the paper. Through extensive experimentation, I found that:
-   - α values between 10-50 produce reasonable results
-   - Optimal value appears highly problem-dependent
-   - Too low: surfaces collapse or become degenerate
-   - Too high: loss dominates and prevents convergence
-   - NeuVAS is **extremely sensitive** to this parameter
+2. **Hyperparameter α**: The exponential decay parameter α in the data non-matching loss is not specified in the paper. 
 
 3. **Curve Point Sampling**: For structured (closed) curves, uniform sampling along polyline segments works well. However, for unstructured sketch curves, the sampling strategy significantly impacts results, and the paper provides no guidance. Different sampling densities and strategies produce vastly different surfaces.
 
