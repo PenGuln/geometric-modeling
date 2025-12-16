@@ -46,13 +46,6 @@ Additional foundational work includes:
 - **Geometric initialization** [Atzmon & Lipman 2020] for improved convergence
 - **DeepSDF** [Park et al. 2019] for implicit surface representation concepts
 
-### Libraries and Tools Used
-- **PyTorch** (2.0+): Deep learning framework for network implementation and automatic differentiation
-- **scikit-image**: Marching Cubes implementation for mesh extraction
-- **NumPy**: Numerical computations and data handling
-- **Trimesh**: Mesh processing and I/O operations
-- **python-pptx**: For extracting presentation content
-
 ---
 
 ## Description of Work
